@@ -1,0 +1,148 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+nav{
+  background: black;
+}
+.div-agregar-img{
+  position: absolute;
+
+    width: 100%;
+    background: #000000bf;
+    font-size: 2rem;
+    color: #0a50ec;
+    text-align: center;
+    bottom: 0;
+    height: 50%;
+
+}
+.botonSubir{
+  width: 100%;
+  font-size: 0.4em;
+
+}
+/* .div-file{
+width: 75%;
+} */
+.div-que-se-oculta{
+
+  padding: 0 1%;
+}
+.contenedor-img-gral{
+  width: 75%;
+    border-radius: 16%;
+    margin: 14% 0;
+    position: relative;
+}
+
+#btn-nav{
+  display: none;
+}
+.align-center{
+  align-self: center;
+}
+.img-usuario{
+  width: 100%;
+    border-radius: 16%;
+
+}
+.text-izq{
+  text-align: left;
+}
+.w100{
+  width: 100%;
+}
+.min-H100{
+  min-height: 100%;
+}
+.eleccion-gral{
+  background-color: #793282d6;
+      padding: 9% 1%;
+  }
+}
+  .contenedor-eleccion-modo{
+width: 80%;
+background-color: yellow;
+margin: auto;
+  }
+    .modos-de-juego{
+      background-color: green;
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+    }
+    .modo-juego-contenedor{
+width: 30%;
+background-color: grey;
+padding: 2% 0;
+    }
+    .boton-modo-juego{
+width: 80%;
+background-color: violet;
+margin: auto;
+    display: block;
+    padding: 23%;
+    }
+
+    .descripcion-modo-juego{
+      display: none;
+    }
+
+    .descripcion-gral{
+      background-color: brown;
+
+    }
+
+
+
+
+
+  @media (max-width:768px) {
+.div-que-se-oculta{
+  display: none;
+  position: absolute;
+
+  background-color: black;
+  z-index: 1000;
+  width: 34%;
+  border-bottom-right-radius:15px;
+  padding-bottom: 3%;
+
+}
+.btn-cerrarsesion-nav{
+  width: 98%;
+    background: red;
+    border-radius: 13px 11px;
+    margin: 2% 0;
+}
+.navbar-toggler-icon{
+  background-image: url(../imagenes/btn-nav.png);
+
+}
+#btn-nav{
+  display: inline-block;
+  color: rgba(255,255,255,.5);
+    border-color: rgba(255,255,255,.1);
+    background-color: grey;
+    margin: 1%;
+}
+
+.row{
+  /* flex-direction: column; */
+}
+.mostrar{
+  display: block;
+}
+.padding-tb{
+
+}
+.contenedor-img-gral {
+    width: 40%;
+
+    margin: 4% 1% 4% 4%;
+    position: relative;
+}
+
+  }

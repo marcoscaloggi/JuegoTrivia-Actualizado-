@@ -1,0 +1,6 @@
+@import "pantalla-inicio.css";
+@import "pantalla-perfil.css";
+@import "pantalla-juego.css";
+*{
+  box-sizing: border-box;
+}
