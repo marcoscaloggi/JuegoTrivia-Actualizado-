@@ -11,14 +11,14 @@ class armarUsuario{
     // La variable $rutaDestino va a contener toda la ruta hasta la carpeta donde guardaremos la imagen que suba el usuario.
     // La funcion dirname(__FILE__) nos va a devolver la ruta exacta hasta el lugar donde esta el archivo que estamos utilizando en este momento.
     // A esa ruta le agregué la carpeta fotos que va a ser la carpeta donde se guardaran estas imagenes
-    $rutaDestino = dirname(__FILE__);
+    $rutaDestino = dirname(__DIR__);
     $rutaDestino = $rutaDestino."/fotos/";
 
     // Utilizando la funcion uniqid() php va a crearle un nombre unico a mi imagen
     $nombreImg = uniqid();
 
     // En esta parte voy a guardar la ruta final de mi archivo que va a ser la ruta hastala carpeta fotos y ahi voy a ponerle el nombre creado en el paso anterios y ponerle la extension del archivo que la separe en los primeros pasos.
-    $rutaDestino = $rutaDestino.".".$nombreImg.".".$ext;
+    $rutaDestino = $rutaDestino.$nombreImg.".".$ext;
 
     // Voy a subir el archivo que se encuentra en el tmp_name(que se guardo en la variable $archivoOrigen) en la ruta final creada en el paso anterior.
     move_uploaded_file ($archivoOrigen, $rutaDestino);
@@ -27,7 +27,7 @@ class armarUsuario{
     return $nombreImg.".".$ext;
   }
 
-  
+
 
   function armarUsuario($datos, $imagen){
 

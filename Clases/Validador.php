@@ -1,5 +1,6 @@
 <?php
-require_once("../autoload.php")
+require_once("BaseMYSQL.php");
+
 class Validador{
 
 function validarRegistro($datos){
