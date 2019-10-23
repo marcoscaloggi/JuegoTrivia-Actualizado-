@@ -59,10 +59,10 @@ if(isset($_SESSION["nombreUser"])){
 }else{
     if(isset($_COOKIE["nombreUser"]) && isset($_COOKIE["contrasenia"])){
       $usuario= BaseMYSQL::buscarPorUser($_COOKIE["nombreUser"]);
-      if(is_null($usuario)==false){
+      if($usuario!=null){
         $contraHash = password_hash($_COOKIE["contrasenia"], PASSWORD_DEFAULT);
         if (password_verify($_COOKIE["contrasenia"], $usuario["contrasenia"])) {
-              armadoVerificadoDeUser($usuario);
+              seteoUsuario($usuario[0]);
               header("Location:pantalla-perfil.php");
               return 1;
         }else{

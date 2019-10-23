@@ -22,7 +22,7 @@ if ($_POST) {
       $usuario = BaseMYSQL::buscarPorUser($_POST["nombreUser"],$validador,'Usuarios');
 
       // inicioSesion($usuario, $_POST);
-      Autenticador::seteoUsuario($usuario,$_POST);
+      Autenticador::seteoUsuario($usuario[0],$_POST);
 
       header("Location:pantalla-perfil.php");
       exit;
@@ -30,15 +30,15 @@ if ($_POST) {
     }
 
     if(count($_POST)==6){
-      $errores = validarRegistro($_POST);
+      $errores = $validador->validarRegistro($_POST);
 
       if (count($errores) == 0) {
 
-        $usuario = buscarPorEmail($_POST["email"]);
+        // $usuario = buscarPorEmail($_POST["email"]);
 
             $avatar = "imagenes/imagen-usuario.png";
-            $usuario = armarUsuario($_POST, $avatar);
-            guardarUsuario($usuario);
+            $usuario = ArmarUsuario::armarUsuario($_POST, $avatar);
+            BaseMYSQL::guardarUsuario($usuario);
 
             inicioSesion($usuario, $_POST);
             header("Location:pantalla-perfil.php");

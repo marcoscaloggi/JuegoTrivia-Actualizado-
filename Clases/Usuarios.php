@@ -18,6 +18,9 @@ public function __construct($nombre, $apellido, $email, $nombre_usuario, $foto_p
        $this->pass = $pass;
        $this->nombre_usuario = $nombre_usuario;
        $this->foto_perfil = $foto_perfil;
+       $this->experiencia = 0;
+       $this->level = 1;
+
    }
 public function setNombre($nombre){
   $this->nombre= $nombre;
@@ -55,7 +58,18 @@ public function setFoto_perfil($foto_perfil){
 public function getFoto_perfil(){
   return $this->foto_perfil;
 }
-
+public function setExperiencia($experiencia){
+  $this->nombre= $experiencia;
+}
+public function getExperiencia(){
+  return $this->experiencia;
+}
+public function setLevel($level){
+  $this->nombre= $level;
+}
+public function getLevel(){
+  return $this->level;
+}
 
 
 

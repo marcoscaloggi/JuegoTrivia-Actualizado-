@@ -32,18 +32,7 @@ class armarUsuario{
   function armarUsuario($datos, $imagen){
 
     $contraHash = password_hash($datos["contrasenia"], PASSWORD_DEFAULT);
-
-    $usuario = [
-      "nombre" => $datos["nombre"],
-      "apellido" => $datos["apellido"],
-      "email" => $datos["email"],
-      "contrasenia" => $contraHash,
-      "nombreUser" => $datos["nombreUser"],
-      "avatar" => $imagen,
-      "level" => 1,
-      "exp" => 0,
-    ];
-
+    $usuario = new Usuarios($datos["nombre"],$datos["apellido"],$datos["email"],$datos["nombreUser"],$imagen,$contraHash);
     return $usuario;
   }
 

@@ -1,6 +1,6 @@
 <?php
 require_once("autoload.php");
-require_once("funciones.php");
+
 if(is_null(Autenticador::verificarSesion())){
     header("Location:pantalla_inicio.php");
 };

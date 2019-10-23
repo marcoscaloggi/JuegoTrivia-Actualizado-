@@ -13,7 +13,7 @@ class BaseMYSQL extends BaseDatos{
         }
     }
 
-    
+
     static public function buscarPorEmail($email,$pdo,$tabla){
         //Aquí hago la sentencia select, para buscar el email, estoy usando bindeo de parámetros por value
         $sql = "select * from $tabla where email = :email";
@@ -37,7 +37,7 @@ class BaseMYSQL extends BaseDatos{
     }
 
     static public function guardarUsuario($pdo, $usuario){
-        $sql = "INSERT INTO usuarios VALUES(default, :nombre, :apellido, :email, :nombre_usuario, :foto_perfil, :pass)";
+        $sql = "INSERT INTO usuarios VALUES(default, :nombre, :apellido, :email, :nombre_usuario, :foto_perfil, :pass,$usuario->getExperiencia,$usuario->getLevel)";
         $guardarUsu = $pdo->prepare($sql);
         $guardarUsu->bindValue(':nombre', $usuario->getNombre());
         $guardarUsu->bindValue(':apellido', $usuario->getApellido());
