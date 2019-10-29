@@ -1,9 +1,10 @@
 <?php
-require_once("autoload.php");
+require_once("Clases/autoload.php");
 
-if(is_null(Autenticador::verificarSesion())){
+if(is_null(Autenticador::verificarSesion($pdo))){
     header("Location:pantalla_inicio.php");
 };
+
 
 ?>
 <!DOCTYPE html>
@@ -11,14 +12,17 @@ if(is_null(Autenticador::verificarSesion())){
   <head>
     <meta charset="utf-8">
     <title>Perfil</title>
-
+<link href="https://fonts.googleapis.com/css?family=Spicy+Rice&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/estilos.css">
     <script src="js/pantalla-perfil.js" charset="utf-8"></script>
         <script src="https://kit.fontawesome.com/0f33fea696.js"></script>
+        <!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
+        <!-- <link rel="stylesheet" href="css/patalla-perfil.css"> -->
+        <link rel="stylesheet" href="css/pantalla-perfil.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   </head>
   <body>
-    <div class="container-fluid">
+    <div class="container-fluid alto-100">
       <?php include_once("header-remodelacion.php") ?>
       <nav class="w100">
 
@@ -31,13 +35,13 @@ if(is_null(Autenticador::verificarSesion())){
     <div class="div-que-se-oculta" id=div-que-se-oculta style="">
 
 <div class="row no-gutters w100">
-<div class="padding-tb col-md-2">
+<div class="padding-tb col-md-3">
 <div class="contenedor-img-gral">
 
-  <img src="<?= $_SESSION["avatar"] ?>"alt="" class="img-usuario">
+  <img src="fotos/<?= $_SESSION["avatar"] ?>"alt="" class="img-usuario">
   <!-- <div class="div-file"> -->
-  <form class="" action="pantalla-perfil.php" method="post">
-    <div class="div-agregar-img">
+  <form class="" method="post" id=form-img enctype="multipart/form-data">
+    <div class="div-agregar-img oculto">
       <label for="inputimg"><i class="fas fa-plus"></i></label>
 
       <input name="foto" id="inputimg" type="file" style='display: none'/>
@@ -47,30 +51,21 @@ if(is_null(Autenticador::verificarSesion())){
 </div>
 
 
-<script type="text/javascript">
-function cambiar(){
-  var pdrs = document.getElementById('file-upload').files;
-
-  alert(pdrs);
-}
-
-</script>
-<!-- </div> -->
 
 </div>
-<div class="padding-tb col-md-10 align-center">
+<div class="padding-tb col-md-9 align-center">
 <div class="row no-gutters">
-<div class="padding-tb col-md-11 ">
+<div class="padding-tb col-md-10 ">
 
 
 <div class="row no-gutters">
-<h3 class="nav-item nombre-usuario padding-tb col-md-12 text-izq"><?=  $_SESSION["nombreUser"] ?></h3>
+<h3 class="nav-item nombre-usuario padding-tb col-md-12 text-izq display-3"><?=  $_SESSION["nombreUser"] ?></h3>
 </div>
 
 <div class="row no-gutters">
 
-<h4 class="nav-item level-usuario padding-tb col-md-6 text-izq">Level: <?= $_SESSION["level"]?></h4>
-<h4 class="nav-item experiencia-usuario padding-tb col-md-6 text-izq">Experiencia: <?= $_SESSION["exp"] ?></h4>
+<h4 class="nav-item level-usuario padding-tb col-md-6 text-izq h1">Level: <?= $_SESSION["level"]?></h4>
+<h4 class="nav-item experiencia-usuario padding-tb col-md-6 text-izq h1">Experiencia: <?= $_SESSION["exp"] ?></h4>
 </div>
 
 
@@ -78,9 +73,9 @@ function cambiar(){
 
 </div>
 
-<div class="padding-tb col-md-1">
+<div class="padding-tb col-md-2">
 <a href="cerrarsesion.php">
-<button type="button" name="button"  onclick="cerrarsesion.php"class="btn-cerrarsesion-nav min-H100" >Cerrar Sesion</button></a>
+<button type="button" name="button"  onclick="cerrarsesion.php"class="btn-cerrarsesion-nav min-H100 btn btn-danger">Cerrar Sesion</button></a>
 </div>
 </div>
 

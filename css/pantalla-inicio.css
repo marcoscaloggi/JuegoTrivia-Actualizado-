@@ -1,3 +1,6 @@
+@import "estilos.css";
+
+
 .container-fluid
 {
     overflow: hidden;
@@ -23,82 +26,12 @@ min-width: 320px;
   text-align: center;
 }
 /**************************** Inicio CSS HEADER ***********************************************/
-header
-{
-    height: 10vh;
-    padding: 0 1%;
 
-    border-bottom: 1px solid orange;
-    background-image: linear-gradient(#0c0c0c, #700808);
-}
-
-header > div
-{
-    display: flex;
-}
-
-h1
-{
-    font-family: 'Fredoka One', cursive;
-
-    margin: auto 0;
-    margin-bottom: auto;
-
-    color: white;
-    text-shadow: 3px 1px #023f4b;
-}
-header > div > a
-{
-    display: inline-flex;
-
-    text-decoration: none;
-}
-header > div > a:hover
-{
-    text-decoration: none;
-}
-.contenedor-logo
-{
-    margin-right: 1.5%;
-}
-header > div > a > img
-{
-    max-height: 150px;
-    margin: auto;
-    padding: 4%;
-}
-
-.heredar_height
-{
-    height: inherit;
-}
 /**************************** Fin CSS HEADER ***********************************************/
 
 /**************************** Inicio CSS FOOTER ***********************************************/
 
-footer
-{
-    padding: 1%;
-border-top: 1px solid orange;
 
-    background-image: linear-gradient(#0c0c0c, #700808);
-}
-.columna-footer h6{
-  color: darkorange;
-}
-
-.columna-footer a
-{
-    text-decoration: none;
-
-    color: white;
-}
-.columna-footer ul
-{
-    padding-left: 0;
-
-    list-style-type: none;
-}
 /**************************** Fin CSS FOOTER ***********************************************/
 /************ Inicio Boton cambio de article en version mobiles*************/
 .contenedor-btn-mobile
@@ -390,10 +323,5 @@ h2
 .contenedor-form-registro{
   margin: 0 0 0 2%;
   padding-top: 4%;
-}
-}
-@media (max-width:400px) {
-header>div>a>h1{
-  font-size: 1.8em;
 }
 }

@@ -1,6 +1,6 @@
 <?php
 require_once("funciones.php");
-require_once("autoload.php");
+require_once("Clases/autoload.php");
 
 $misCookies = Autenticador::verificarCookies();
 
@@ -15,37 +15,40 @@ if ($_POST) {
 
   if(count($_POST)==2||count($_POST)==3){
 
-    $errores = $validador -> validarLogin($_POST);
+
+    $errores = $validador -> validarLogin($_POST,$pdo);
     if (count($errores) == 0) {
 
       // $usuario = buscarPorUser($_POST["nombreUser"]);
-      $usuario = BaseMYSQL::buscarPorUser($_POST["nombreUser"],$validador,'Usuarios');
-
+      $usuario = BaseMYSQL::buscarPorUser($_POST["nombreUser"],$pdo,'Usuarios');
+var_dump($usuario);
       // inicioSesion($usuario, $_POST);
-      Autenticador::seteoUsuario($usuario[0],$_POST);
+      Autenticador::seteoUsuario($usuario,$_POST);
 
       header("Location:pantalla-perfil.php");
-      exit;
-      }
+
+    }else{
+      echo "hay errores";
+    }
     }
 
     if(count($_POST)==6){
-      $errores = $validador->validarRegistro($_POST);
+      $errores = $validador->validarRegistro($_POST,$pdo);
 
       if (count($errores) == 0) {
 
         // $usuario = buscarPorEmail($_POST["email"]);
 
             $avatar = "imagenes/imagen-usuario.png";
-            $usuario = ArmarUsuario::armarUsuario($_POST, $avatar);
-            BaseMYSQL::guardarUsuario($usuario);
+            $usuario = ArmarUsuario::armarUser($_POST, $avatar);
+            BaseMYSQL::guardarUsuario($pdo,$usuario);
 
-            inicioSesion($usuario, $_POST);
+            Autenticador::seteoUsuario($usuario, $_POST);
             header("Location:pantalla-perfil.php");
             exit;
           }}
 }
-verificarSesion();
+Autenticador::verificarSesion($pdo);
 
  ?>
 <!DOCTYPE html>
@@ -58,7 +61,7 @@ verificarSesion();
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
  <script type="text/javascript" src="js/pantalla-inicio.js"></script>
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/pantalla-inicio.css">
 
     <title>Juego trivia</title>
   </head>

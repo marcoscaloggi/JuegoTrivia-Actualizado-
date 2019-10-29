@@ -1,7 +1,17 @@
 function inicioPag(){
 
-  function ocultar_mostrar(){
+  $(".contenedor-img-gral").mouseover(function(){
 
+    $(".div-agregar-img").removeClass("oculto");
+
+  });
+  $(".contenedor-img-gral").mouseout(function(){
+
+    $(".div-agregar-img").addClass("oculto");
+
+  });
+
+  function ocultar_mostrar(){
 
 
     $("#div-que-se-oculta").toggleClass("mostrar").animate({},1000);
@@ -26,9 +36,48 @@ window.location.href = src + "/../../pantalla-juego.php";
 
 
 $("#inputimg").change(cambiar);
+
+
+$('#form-img').submit(function(evt) {
+
+  var formData = new FormData();
+  var files = $('#inputimg')[0].files[0];
+  formData.append('imagen',files);
+  console.log(files);
+$(".div-agregar-img").addClass("oculto");
+
+  $.ajax({
+url: 'subirfoto.php',
+type: 'POST',
+data: formData,
+contentType: false,
+processData:false,
+cache:false,
+
+success:function(response){
+
+
+
+  $(".img-usuario").attr("src","fotos/"+response);
+}
+
+
+
+
+});
+
+
+evt.preventDefault();
+
+});
 function cambiar(){
-  alert("Ah cambiado");
-  document.forms[0].submit();
+
+$("#form-img").submit();
+
+
+
+
+
 
 }
 

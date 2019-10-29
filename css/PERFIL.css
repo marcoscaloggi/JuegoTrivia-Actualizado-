@@ -1,0 +1,38 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container-fluid{
+  min-height: 100vh;
+  padding: 0;
+  overflow: hidden;
+}
+
+.navbar{
+  padding-top: 10vh;
+width: 100%;
+}
+.contenedor-pantalla{
+  width: 100%;
+
+}
+
+.w-100{
+  width: 100%;
+}
+.w-50{
+  width: 50%;
+  display: inline-block;
+}
+.contenedor-foto{
+  width: 20%;
+}
+
+.datos-usuario{
+  width: 70%;
+}
+.botones-nav{
+  width: 10%;
+}

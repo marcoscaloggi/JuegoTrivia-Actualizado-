@@ -1,16 +1,27 @@
 <?php
-require_once("../autoload.php")
+
+require_once('autoload.php');
+
+class Autenticador{
 
 static public function seteoUsuario($usuario, $dato=""){
 
 
-  $_SESSION["nombre"] = $usuario["nombre"];
-  $_SESSION["apellido"] = $usuario["apellido"];
-  $_SESSION["nombreUser"] = $usuario["nombreUser"];
-  $_SESSION["email"] = $usuario["email"];
-  $_SESSION["avatar"] = $usuario["avatar"];
-    $_SESSION["level"] = $usuario["level"];
-      $_SESSION["exp"] = $usuario["exp"];
+  // $_SESSION["nombre"] = $usuario->getNombre();
+  // $_SESSION["apellido"] = $usuario->getApellido();
+  // $_SESSION["nombreUser"] = $usuario->getNombre_usuario();
+  // $_SESSION["email"] = $usuario->getEmail();
+  // $_SESSION["avatar"] = $usuario->getFoto_perfil();
+  //   $_SESSION["level"] = $usuario->getLevel();
+  //     $_SESSION["exp"] = $usuario->getExperiencia();
+
+      $_SESSION["nombre"] = $usuario["nombre"];
+      $_SESSION["apellido"] = $usuario["apellido"];
+      $_SESSION["nombreUser"] = $usuario["nombre_usuario"];
+      $_SESSION["email"] = $usuario["email"];
+      $_SESSION["avatar"] = $usuario["foto_perfil"];
+        $_SESSION["level"] = $usuario["level"];
+          $_SESSION["exp"] = $usuario["experiencia"];
 
   if(isset($dato["recordar"])){
     if($dato["recordar"] =="S"){
@@ -43,9 +54,9 @@ return $cookies;
 }
 
 
-static public function verificarSesion(){
+static public function verificarSesion($pdo){
 if(isset($_SESSION["nombreUser"])){
-  $usuario = BaseMYSQL::buscarPorUser($_SESSION["nombreUser"]);
+  $usuario = BaseMYSQL::buscarPorUser($_SESSION["nombreUser"],$pdo,'usuarios');
     if(is_null($usuario)){
 
 
@@ -92,5 +103,5 @@ if(isset($_SESSION["nombreUser"])){
     }
   }
   }
-
+}
  ?>

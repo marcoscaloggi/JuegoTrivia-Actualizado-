@@ -37,7 +37,9 @@ class BaseMYSQL extends BaseDatos{
     }
 
     static public function guardarUsuario($pdo, $usuario){
-        $sql = "INSERT INTO usuarios VALUES(default, :nombre, :apellido, :email, :nombre_usuario, :foto_perfil, :pass,$usuario->getExperiencia,$usuario->getLevel)";
+      $exp = $usuario->getExperiencia();
+      $lvl = $usuario->getLevel();
+        $sql = "INSERT INTO usuarios VALUES(default, :nombre, :apellido, :email, :nombre_usuario, :foto_perfil, :pass,$exp,$lvl)";
         $guardarUsu = $pdo->prepare($sql);
         $guardarUsu->bindValue(':nombre', $usuario->getNombre());
         $guardarUsu->bindValue(':apellido', $usuario->getApellido());
@@ -47,6 +49,15 @@ class BaseMYSQL extends BaseDatos{
         $guardarUsu->bindValue(':nombre_usuario', $usuario->getNombre_usuario());
 
         $guardarUsu->execute();
+    }
+    static public function actualizar_perfil($pdo,$ruta,$usuario){
+$sql= "UPDATE usuarios set foto_perfil = :ruta where nombre_usuario = :usuario";
+
+      $query = $pdo->prepare($sql);
+      $query ->bindValue(':ruta',$ruta);
+      $query ->bindValue(':usuario',$usuario);
+
+      $query->execute();
     }
     public function leer(){
         //A futuro trabajaremos en esto

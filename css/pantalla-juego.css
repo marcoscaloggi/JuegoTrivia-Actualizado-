@@ -1,3 +1,6 @@
+@import "header.css";
+@import "footer.css";
+
 .body-pantalla-juego {
   width: 100%;
 }
