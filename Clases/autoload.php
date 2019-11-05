@@ -1,11 +1,11 @@
 <?php
 session_start();
-require_once("Clases/ArmarUsuario.php");
-require_once("Clases/BaseDeDatos.php");
-require_once("Clases/BaseMYSQL.php");
-require_once("Clases/Usuarios.php");
-require_once("Clases/Validador.php");
-require_once("Clases/Autenticador.php");
+require_once("ArmarUsuario.php");
+require_once("BaseDeDatos.php");
+require_once("BaseMYSQL.php");
+require_once("Usuarios.php");
+require_once("Validador.php");
+require_once("Autenticador.php");
 
 
 

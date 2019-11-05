@@ -3,6 +3,7 @@ header{
   z-index: 1000;
     height: 10vh;
     padding: 0 1%;
+    top: 0;
 position: fixed;
     border-bottom: 1px solid orange;
     background-image: linear-gradient(#0c0c0c, #700808);
@@ -43,12 +44,25 @@ header > div > a > img
     margin: auto;
     padding: 4%;
 }
+.top-10vh{
+  margin-top:10vh;
+  width: 100%;
+  height: 0;
+}
 
 .heredar_height
 {
     height: inherit;
 }
+@media (max-width:420px) {
+  header{
+    height: 6vh;
+  }
 
+  .top-10vh {
+    margin-top: 6vh;
+  }
+}
 @media (max-width:400px) {
 header>div>a>h1{
   font-size: 1.8em;

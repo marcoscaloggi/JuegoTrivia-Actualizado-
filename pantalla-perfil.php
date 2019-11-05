@@ -8,125 +8,203 @@ if(is_null(Autenticador::verificarSesion($pdo))){
 
 ?>
 <!DOCTYPE html>
-<html lang="es" dir="ltr">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Perfil</title>
-<link href="https://fonts.googleapis.com/css?family=Spicy+Rice&display=swap" rel="stylesheet">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="js/pantalla-perfil.js" charset="utf-8"></script>
-        <script src="https://kit.fontawesome.com/0f33fea696.js"></script>
-        <!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
-        <!-- <link rel="stylesheet" href="css/patalla-perfil.css"> -->
-        <link rel="stylesheet" href="css/pantalla-perfil.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/estilos.css">
+<link rel="stylesheet" href="css/fontello.css">
+    <link rel="stylesheet" href="css/pantalla-perfil.css">
+<script type="text/javascript" src="js/pantalla-perfil.js">
+
+</script>
   </head>
   <body>
-    <div class="container-fluid alto-100">
+    <div class="contenedor">
       <?php include_once("header-remodelacion.php") ?>
-      <nav class="w100">
+      <div class="top-10vh"></div>
+      <div class="header">
+        <input type="checkbox" id=btn-menu name="" value="">
+        <label for="btn-menu" class="icon-menu"></label>
 
-    <button class="navbar-toggler" type="button" aria-expanded="false" id= btn-nav>
-    <span class="navbar-toggler-icon"></span>
+      <nav class="navegacion">
 
 
-    </button>
+<ul class="barra-responsive">
+  <li class="contenedor-foto">
+    <img src="fotos/<?= $_SESSION["avatar"] ?>" alt="" id=img-usuario class="img-usuario">
 
-    <div class="div-que-se-oculta" id=div-que-se-oculta style="">
-
-<div class="row no-gutters w100">
-<div class="padding-tb col-md-3">
-<div class="contenedor-img-gral">
-
-  <img src="fotos/<?= $_SESSION["avatar"] ?>"alt="" class="img-usuario">
-  <!-- <div class="div-file"> -->
-  <form class="" method="post" id=form-img enctype="multipart/form-data">
     <div class="div-agregar-img oculto">
-      <label for="inputimg"><i class="fas fa-plus"></i></label>
+      <form class="" method="post" id=form-img enctype="multipart/form-data">
+        <label for="inputimg"><img class="icon-foto"></label>
+        <input name="foto" id="inputimg" type="file" style='display: none'/>
+    </form>
+  </div>
 
-      <input name="foto" id="inputimg" type="file" style='display: none'/>
+  </li>
 
+  <li class="datos-usuario">
+    <ul class="columna">
+      <li class="nombreUser"><span><?=  $_SESSION["nombreUser"] ?></span></li>
+      <ul class="otrosDatos">
+        <li><span>Level: <?= $_SESSION["level"]?></span></li>
+        <li><span>Exp: <?= $_SESSION["exp"]?>/9999</span></li>
+
+      </ul>
+
+    </ul>
+  </li>
+  <li class="botones-nav">
+    <button type="button" class="config"><img class="config-icon" src="imagenes/config.png"></button>
+<button type="button" class="cerrarsesion" onclick="cerrarsesion.php"><img src="imagenes/salida.png" class="puerta-icon"><a href="cerrarsesion.php" class="link-cerrarsesion"></a></button>
+  </li>
+</ul>
+
+
+</nav>
+</div>
+
+<div class="contenedor-pantalla">
+  <!-- Notas:
+  - Falta el formulario para editar lo datos del Usuario
+
+  -En modo tablet y mobile tengo que desactivar el hover y con javascript agregar onclick en la foto del usuario para que muestre el div que permite cambiar la foto.
+  este tiene que tener un setTimeout() para que desaparezca solo
+
+  -Falta la logica paa que las partidas y y las categorias se completen de manera automatica
+
+  -Considerar asignar un color para cada categoria y guardarlo como un campo en la bd
+
+  -Pensar en la logica para subir de nivel y Exp
+
+  -Eliminar los botones de cerrarsesion y congig y pasarle los estilos a los <a> que los contienen
+
+  -Terminar la BD:
+        tablas: Usuarios, Preguntas, Partidas, Usuario-Partida. -->
+<section class="section-partidas">
+  <article class="article-categorias">
+    <h4>Categorias</h4>
+    <div class="contenedor-categorias">
+      <!-- Aca Van las Categorias. Se van a generar automaticamente dependendiendo si hay las preguntas suficientes -->
+      <a href="#" class="categoria"style="background-color: lightblue"><span>Categoria 1</span></a>
+      <a href="#" class="categoria"style="background-color: red"><span>Categoria 2</span></a>
+      <a href="#" class="categoria"style="background-color: green"><span>Categoria 3</span></a>
+      <a href="#" class="categoria"style="background-color: yellow"><span>Categoria 1</span></a>
+      <a href="#" class="categoria"style="background-color: orange"><span>Categoria 2</span></a>
+      <a href="#" class="categoria"style="background-color: blue"><span>Categoria 3</span></a>
     </div>
-  </form>
-</div>
-
-
-
-</div>
-<div class="padding-tb col-md-9 align-center">
-<div class="row no-gutters">
-<div class="padding-tb col-md-10 ">
-
-
-<div class="row no-gutters">
-<h3 class="nav-item nombre-usuario padding-tb col-md-12 text-izq display-3"><?=  $_SESSION["nombreUser"] ?></h3>
-</div>
-
-<div class="row no-gutters">
-
-<h4 class="nav-item level-usuario padding-tb col-md-6 text-izq h1">Level: <?= $_SESSION["level"]?></h4>
-<h4 class="nav-item experiencia-usuario padding-tb col-md-6 text-izq h1">Experiencia: <?= $_SESSION["exp"] ?></h4>
-</div>
-
-
-
-
-</div>
-
-<div class="padding-tb col-md-2">
-<a href="cerrarsesion.php">
-<button type="button" name="button"  onclick="cerrarsesion.php"class="btn-cerrarsesion-nav min-H100 btn btn-danger">Cerrar Sesion</button></a>
-</div>
-</div>
-
-</div>
-
-
+  </article>
+  <article class="article-partidas">
+    <h4>Partidas</h4>
+    <div class="contenedor-partidas">
+      <!-- Aca se van a generar las partidas automaticamente, teniendo un alto maximo con un overflow-y:scroll -->
+<a href="#" class="juego" style="background-color: lightblue">
+  <span class="estado-partida">En curso</span>
+  <span class="fecha-juego">11/11/1999</span>
+  <span class="puntos-juego">Pts: 99999</span>
+  <div class="vidas">
+    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
+    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
+    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
+  </div>
+</a>
+<a href="#" class="juego" style="background-color: green">
+  <span class="estado-partida">En curso</span>
+  <span class="fecha-juego">11/11/1999</span>
+  <span class="puntos-juego">Pts: 99999</span>
+  <div class="vidas">
+    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
+    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
+    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
+  </div>
+</a>
+<a href="#" class="juego" style="background-color: red">
+  <span class="estado-partida">En curso</span>
+  <span class="fecha-juego">11/11/1999</span>
+  <span class="puntos-juego">Pts: 99999</span>
+  <div class="vidas">
+    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
+    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
+    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
+  </div>
+</a>
     </div>
-    </div>
-  </nav>
-          <div class="pantalla-contenedor">
+  </article>
+</section>
+<section class="section-ranking">
+
+<table class="tabla-ranking">
+
+  <thead>
+    <tr>
+      <th colspan="3" class="titulo-tabla"><a href="#"><img src="imagenes/flecha-izquierda.png"  class="icon-flecha"  alt=""></a> Ranking <a href="#"> <img src="imagenes/flecha-derecha.png" class="icon-flecha"  alt=""> </a> </th>
+    </tr>
+    <tr>
+      <th colspan="3" id=categoria-tabla style="background-color: lightblue">Nombre Categoria</th>
+    </tr>
+    <tr>
+      <th>/</th>
+      <th>Usuario</th>
+      <th>Puntos</th>
+    </tr>
+  </thead>
+
+    <tbody>
+
+        <tr>
+          <th>1</th><th>caloggi</th><th>999999</th>
+        </tr>
+
+        <tr>
+          <th>2</th><th>caloggi</th><th>999999</th>
+        </tr>
+
+        <tr>
+          <th>3</th><th>caloggi</th><th>999999</th>
+        </tr>
+
+        <tr>
+          <th>4</th><th>caloggi</th><th>999999</th>
+        </tr>
+
+        <tr>
+          <th>5</th><th>caloggi</th><th>999999</th>
+        </tr>
+
+        <tr>
+          <th>6</th><th>caloggi</th><th>999999</th>
+        </tr>
+
+        <tr>
+          <th>7</th><th>caloggi</th><th>999999</th>
+        </tr>
+
+        <tr>
+          <th>8</th><th>caloggi</th><th>999999</th>
+        </tr>
+
+        <tr>
+          <th>9</th><th>caloggi</th><th>999999</th>
+        </tr>
+        <tr>
+        <th>10</th><th>caloggi</th><th>999999</th>
+
+      </tr>
+    </tbody>
+</table>
+</section>
+</div>
+        <?php include_once("footer-remodelacion.php") ?>
+      </div>
 
 
 
-              <div class="eleccion-gral">
-                <div class="contenedor-eleccion-modo">
-                  <section class="modos-de-juego">
-                    <article class="modo-juego-contenedor">
-                      <button type="button" name="button" class="boton-modo-juego" id=modojuego1>Modo Juego 1</button>
-                      <p class="descripcion-modo-juego">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </article>
-                    <article class="modo-juego-contenedor">
-                      <button type="button" name="button" class="boton-modo-juego"id=modojuego2>Modo Juego 2</button>
-                      <p class="descripcion-modo-juego">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </article>
-                    <article class="modo-juego-contenedor">
-                      <button type="button" name="button" class="boton-modo-juego"id=modojuego3>Modo Juego 3</button>
-                      <p class="descripcion-modo-juego">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </article>
-                  </section>
-                  <div class="descripcion-gral">
-                    <span>Descripcion modo juego gral</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
 
-
-
-
-
-
-
-
-      <?php include_once("footer-remodelacion.php") ?>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   </body>
 </html>

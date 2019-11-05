@@ -51,6 +51,7 @@ class BaseMYSQL extends BaseDatos{
         $guardarUsu->execute();
     }
     static public function actualizar_perfil($pdo,$ruta,$usuario){
+      
 $sql= "UPDATE usuarios set foto_perfil = :ruta where nombre_usuario = :usuario";
 
       $query = $pdo->prepare($sql);

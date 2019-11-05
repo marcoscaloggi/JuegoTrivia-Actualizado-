@@ -69,6 +69,7 @@ Autenticador::verificarSesion($pdo);
     <div class="container-fluid">
 
       <?php include_once("header-remodelacion.php") ?>
+      <div class="top-10vh"></div>
       <div class="contenedor-pantalla">
 
         <div class="contenedor-btn-mobile">

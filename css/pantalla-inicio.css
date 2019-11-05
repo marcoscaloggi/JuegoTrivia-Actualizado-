@@ -9,11 +9,15 @@
     padding-left: 0;
 min-width: 320px;
     background-image: url(../imagenes/fondo-body.jpg);
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
 }
 .contenedor-pantalla
 {
     position: relative;
-
+min-height: 69vh;
     display: flex;
 }
 
