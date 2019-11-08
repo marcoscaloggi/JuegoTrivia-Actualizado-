@@ -6,15 +6,15 @@ class Autenticador{
 
 static public function seteoUsuario($usuario, $dato=""){
 
-
-  // $_SESSION["nombre"] = $usuario->getNombre();
-  // $_SESSION["apellido"] = $usuario->getApellido();
-  // $_SESSION["nombreUser"] = $usuario->getNombre_usuario();
-  // $_SESSION["email"] = $usuario->getEmail();
-  // $_SESSION["avatar"] = $usuario->getFoto_perfil();
-  //   $_SESSION["level"] = $usuario->getLevel();
-  //     $_SESSION["exp"] = $usuario->getExperiencia();
-
+if(is_object($usuario)){
+  $_SESSION["nombre"] = $usuario->getNombre();
+  $_SESSION["apellido"] = $usuario->getApellido();
+  $_SESSION["nombreUser"] = $usuario->getNombre_usuario();
+  $_SESSION["email"] = $usuario->getEmail();
+  $_SESSION["avatar"] = $usuario->getFoto_perfil();
+    $_SESSION["level"] = $usuario->getLevel();
+      $_SESSION["exp"] = $usuario->getExperiencia();
+}else{
       $_SESSION["nombre"] = $usuario["nombre"];
       $_SESSION["apellido"] = $usuario["apellido"];
       $_SESSION["nombreUser"] = $usuario["nombre_usuario"];
@@ -22,7 +22,7 @@ static public function seteoUsuario($usuario, $dato=""){
       $_SESSION["avatar"] = $usuario["foto_perfil"];
         $_SESSION["level"] = $usuario["level"];
           $_SESSION["exp"] = $usuario["experiencia"];
-
+}
   if(isset($dato["recordar"])){
     if($dato["recordar"] =="S"){
 

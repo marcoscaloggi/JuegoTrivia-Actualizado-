@@ -10,6 +10,7 @@ class Usuarios
     private $pass;
     private $experiencia;
     private $level;
+    private $tipo;
 
     public function __construct($nombre, $apellido, $email, $nombre_usuario, $foto_perfil, $pass)
     {
@@ -21,6 +22,7 @@ class Usuarios
         $this->foto_perfil = $foto_perfil;
         $this->experiencia = 0;
         $this->level = 1;
+        $this->tipo = "jugador";
     }
     public function setNombre($nombre)
     {
@@ -85,5 +87,13 @@ class Usuarios
     public function getLevel()
     {
         return $this->level;
+    }
+    public function setTipo($tipo)
+    {
+        $this->tipo= $tipo;
+    }
+    public function getTipo()
+    {
+        return $this->tipo;
     }
 }

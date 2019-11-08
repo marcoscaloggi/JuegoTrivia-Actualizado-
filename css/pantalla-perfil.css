@@ -344,7 +344,7 @@ th{
       border-bottom-right-radius: 17px;
   }
   div.header{
-    height: 5vh;
+    height: 7vh;
   }
   div.header>label{
     display: block;
@@ -354,7 +354,7 @@ th{
     padding: 0;
     left: 0;
     width: 50%;
-    top: 5vh;
+    top: 7vh;
     z-index: 500;
     transform: translateX(-100%);
 transition: all 0.3s;

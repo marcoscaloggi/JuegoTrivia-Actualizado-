@@ -28,7 +28,7 @@ var_dump($usuario);
       header("Location:pantalla-perfil.php");
 
     }else{
-      echo "hay errores";
+      // echo "hay errores";
     }
     }
 
@@ -39,7 +39,7 @@ var_dump($usuario);
 
         // $usuario = buscarPorEmail($_POST["email"]);
 
-            $avatar = "imagenes/imagen-usuario.png";
+            $avatar = "imagen-usuario.png";
             $usuario = ArmarUsuario::armarUser($_POST, $avatar);
             BaseMYSQL::guardarUsuario($pdo,$usuario);
 
