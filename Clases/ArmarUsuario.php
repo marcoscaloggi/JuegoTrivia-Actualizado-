@@ -35,6 +35,7 @@ class armarUsuario
     {
         $contraHash = password_hash($datos["contrasenia"], PASSWORD_DEFAULT);
         $usuario = new Usuarios($datos["nombre"], $datos["apellido"], $datos["email"], $datos["nombreUser"], $imagen, $contraHash);
+        
         return $usuario;
     }
 }

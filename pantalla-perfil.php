@@ -1,4 +1,5 @@
 <?php
+
 require_once("Clases/autoload.php");
 
 if(is_null(Autenticador::verificarSesion($pdo))){

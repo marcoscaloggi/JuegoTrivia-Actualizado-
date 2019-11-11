@@ -1,9 +1,21 @@
 <?php
 require_once("funciones.php");
+require_once("Base_de_Datos/insertar_datos.php");
 require_once("Clases/autoload.php");
+
+llenar_BD($pdo);
 
 $misCookies = Autenticador::verificarCookies();
 
+
+if ($_POST==false) {
+
+  $inicio=Autenticador::verificarSesion($pdo);
+
+  if($inicio==1){
+    header("Location:pantalla-perfil.php");
+  }
+}
 if(isset($_COOKIE['btn-registro'])==false){
     setcookie('btn-registro','inicio',time()+(60*60*24),"/");
     // echo "Estoy creando la cookie";
@@ -21,14 +33,14 @@ if ($_POST) {
 
       // $usuario = buscarPorUser($_POST["nombreUser"]);
       $usuario = BaseMYSQL::buscarPorUser($_POST["nombreUser"],$pdo,'Usuarios');
-var_dump($usuario);
+
       // inicioSesion($usuario, $_POST);
       Autenticador::seteoUsuario($usuario,$_POST);
 
       header("Location:pantalla-perfil.php");
 
     }else{
-      // echo "hay errores";
+      echo "hay errores";
     }
     }
 
@@ -42,7 +54,8 @@ var_dump($usuario);
             $avatar = "imagen-usuario.png";
             $usuario = ArmarUsuario::armarUser($_POST, $avatar);
             BaseMYSQL::guardarUsuario($pdo,$usuario);
-
+            $id=BaseMYSQL::buscarId($usuario -> getNombre_usuario());
+            $usuario -> setId($id);
             Autenticador::seteoUsuario($usuario, $_POST);
             header("Location:pantalla-perfil.php");
             exit;
@@ -221,7 +234,7 @@ Autenticador::verificarSesion($pdo);
 <script src = " https://unpkg.com/react@16/umd/react.development.js "  crossorigin></script>
 <script src = "https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 
-<script src = " like_button.js "></script>
+
 
   </body>
 </html>

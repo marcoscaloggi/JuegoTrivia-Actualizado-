@@ -2,6 +2,7 @@
 
 class Usuarios
 {
+  private $id;
     private $nombre;
     private $apellido;
     private $email;
@@ -22,8 +23,17 @@ class Usuarios
         $this->foto_perfil = $foto_perfil;
         $this->experiencia = 0;
         $this->level = 1;
-        $this->tipo = "jugador";
+        $this->tipo = 'jugador';
     }
+    public function setId($id)
+    {
+        $this->id= $id;
+    }
+    public function getId()
+    {
+        return $this->id;
+    }
+
     public function setNombre($nombre)
     {
         $this->nombre= $nombre;

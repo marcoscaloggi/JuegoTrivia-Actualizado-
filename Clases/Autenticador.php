@@ -7,6 +7,7 @@ class Autenticador{
 static public function seteoUsuario($usuario, $dato=""){
 
 if(is_object($usuario)){
+  $_SESSION["id"] = $usuario->getId();
   $_SESSION["nombre"] = $usuario->getNombre();
   $_SESSION["apellido"] = $usuario->getApellido();
   $_SESSION["nombreUser"] = $usuario->getNombre_usuario();
@@ -14,7 +15,10 @@ if(is_object($usuario)){
   $_SESSION["avatar"] = $usuario->getFoto_perfil();
     $_SESSION["level"] = $usuario->getLevel();
       $_SESSION["exp"] = $usuario->getExperiencia();
+      $_SESSION["tipo"] = $usuario->getTipo();
+
 }else{
+  $_SESSION["id"] = $usuario["id"];
       $_SESSION["nombre"] = $usuario["nombre"];
       $_SESSION["apellido"] = $usuario["apellido"];
       $_SESSION["nombreUser"] = $usuario["nombre_usuario"];
@@ -22,6 +26,8 @@ if(is_object($usuario)){
       $_SESSION["avatar"] = $usuario["foto_perfil"];
         $_SESSION["level"] = $usuario["level"];
           $_SESSION["exp"] = $usuario["experiencia"];
+          $_SESSION["tipo"] = $usuario["tipo"];
+
 }
   if(isset($dato["recordar"])){
     if($dato["recordar"] =="S"){
@@ -54,54 +60,40 @@ return $cookies;
 }
 
 
+
 static public function verificarSesion($pdo){
 if(isset($_SESSION["nombreUser"])){
   $usuario = BaseMYSQL::buscarPorUser($_SESSION["nombreUser"],$pdo,'usuarios');
     if(is_null($usuario)){
-
-
       return null;
       exit;
     }
     else{
       return 1;
-
     }
 }else{
     if(isset($_COOKIE["nombreUser"]) && isset($_COOKIE["contrasenia"])){
       $usuario= BaseMYSQL::buscarPorUser($_COOKIE["nombreUser"]);
       if($usuario!=null){
         $contraHash = password_hash($_COOKIE["contrasenia"], PASSWORD_DEFAULT);
-        if (password_verify($_COOKIE["contrasenia"], $usuario["contrasenia"])) {
-              seteoUsuario($usuario[0]);
+        if (password_verify($_COOKIE["contrasenia"], $usuario["pass"])) {
+              seteoUsuario($usuario);
               header("Location:pantalla-perfil.php");
               return 1;
         }else{
           // header("Location:pantalla_inicio.php");
         return null;
-
           exit;
-
-
         }
       }else{
-
-
         return null;
-
         exit;
-
       }
     }else {
-
-
       return null;
-
-
       exit;
-
     }
   }
-  }
-}
+  }//LLAve de fin de funcion verificarSesion
+}//Llave de la clase
  ?>
