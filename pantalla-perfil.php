@@ -32,7 +32,7 @@ if(is_null(Autenticador::verificarSesion($pdo))){
     <div class="div-agregar-img oculto">
       <form class="" method="post" id=form-img enctype="multipart/form-data">
         <label for="inputimg"><img class="icon-foto"></label>
-        <input name="foto" id="inputimg" type="file" style=""
+        <input name="foto" id="inputimg" type="file" style="display:none"
     </form>
   </div>
 
@@ -40,10 +40,10 @@ if(is_null(Autenticador::verificarSesion($pdo))){
 
   <li class="datos-usuario">
     <ul class="columna">
-      <li class="nombreUser"><span><?php     $_SESSION["nombreUser"] ?></span></li>
+      <li class="nombreUser"><span><?= $_SESSION["nombreUser"] ?></span></li>
       <ul class="otrosDatos">
-        <li><span>Level: <?php    $_SESSION["level"]?></span></li>
-        <li><span>Exp: <?php    $_SESSION["exp"]?>/9999</span></li>
+        <li><span>Level: <?=    $_SESSION["level"]?></span></li>
+        <li><span>Exp: <?=    $_SESSION["exp"]?>/9999</span></li>
 
       </ul>
 
@@ -66,21 +66,16 @@ if(is_null(Autenticador::verificarSesion($pdo))){
   -En modo tablet y mobile tengo que desactivar el hover y con javascript agregar onclick en la foto del usuario para que muestre el div que permite cambiar la foto.
   este tiene que tener un setTimeout() para que desaparezca solo
 
-  -Falta la logica paa que las partidas y y las categorias se completen de manera automatica
-
-  -Considerar asignar un color para cada categoria y guardarlo como un campo en la bd
-
   -Pensar en la logica para subir de nivel y Exp
 
   -Eliminar los botones de cerrarsesion y congig y pasarle los estilos a los <a> que los contienen
+-->
 
-  -Terminar la BD:
-        tablas: Usuarios, Preguntas, Partidas, Usuario-Partida. -->
 <section class="section-partidas">
   <article class="article-categorias">
     <h4>Categorias</h4>
     <div class="contenedor-categorias">
-      <!-- Aca Van las Categorias. Se van a generar automaticamente dependendiendo si hay las preguntas suficientes -->
+
       <a id=1 href="#" class="categoria"style="background-color: #EB3912"><span>General</span></a>
 
       <?php    $categorias=BaseMYSQL::crear_categorias($pdo);
@@ -94,13 +89,13 @@ if(is_null(Autenticador::verificarSesion($pdo))){
   <article class="article-partidas">
     <h4>Partidas</h4>
     <div class="contenedor-partidas">
-      <!-- Aca se van a generar las partidas automaticamente, teniendo un alto maximo con un overflow-y:scroll -->
-      <?php    $partidas= BaseMYSQL::cargar_partidas($_SESSION["id"],$pdo);
 
+
+      <?php    $partidas= BaseMYSQL::cargar_partidas($_SESSION["id"],$pdo);
         foreach ($partidas as $key => $partida):?>
 
-        <a id=<?php    $partida["id"] ?> href="pantalla-juego.php" class="juego" style="background-color: <?php   echo $partida['color'] ?>">
-          <span class="estado-partida" href="pantalla-juego.php"><?php  if($partida["vidas"]<0){echo "Finalizado";}else{echo "En Curso";} ?></span>
+        <a id=<?= $partida['id'] ?>   <?php if($partida["vidas"]>-1){echo "href='pantalla-juego.php'";}?>" class="juego" style="background-color: <?php   echo $partida['color'] ?>">
+          <span class="estado-partida" ><?php  if($partida["vidas"]<0){echo "Finalizado";}else{echo "En Curso";} ?></span>
           <span class="fecha-juego"><?php  echo "nada"?></span>
           <span class="puntos-juego"><?php   echo $partida['puntos'];?> Pts</span>
           <div class="vidas">

@@ -1,9 +1,9 @@
 <?php
-require_once("autoload.php");
-
-if(is_null(Autenticador::verificarSesion())){
-    header("Location:pantalla_inicio.php");
-};
+// require_once("clases/autoload.php");
+//
+// if(is_null(Autenticador::verificarSesion())){
+//     header("Location:pantalla_inicio.php");
+// };
 
 ?>
 <!DOCTYPE html>
