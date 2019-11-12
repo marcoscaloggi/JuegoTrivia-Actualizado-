@@ -17,9 +17,6 @@ function inicioPag(){
   cache:false,
 
   success:function(response){
-
-
-
     $(".img-usuario").attr("src","fotos/"+response);
   }
 });

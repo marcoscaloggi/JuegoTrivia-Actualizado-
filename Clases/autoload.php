@@ -1,14 +1,11 @@
 <?php
 session_start();
-require_once("ArmarUsuario.php");
-require_once("BaseDeDatos.php");
-require_once("BaseMYSQL.php");
-require_once("Usuarios.php");
-require_once("Validador.php");
-require_once("Autenticador.php");
-
-
-
+require_once "ArmarUsuario.php";
+require_once "BaseDeDatos.php";
+require_once "BaseMYSQL.php";
+require_once "Usuarios.php";
+require_once "Validador.php";
+require_once "Autenticador.php";
 
 $host = "localhost";
 $bd = "juegotrivia";
@@ -21,4 +18,3 @@ $pdo = BaseMYSQL::conexion($host,$bd,$usuario,$password,$puerto,$charset);
 
 
 $validador = new Validador();
- ?>

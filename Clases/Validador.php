@@ -1,5 +1,5 @@
 <?php
-require_once("autoload.php");
+require_once "autoload.php";
 
 class Validador
 {
@@ -30,17 +30,7 @@ class Validador
             if (BaseMYSQL::buscarPorUser($datos["nombreUser"],$pdo,'usuarios')!=null) {
                 $errores[2] = "Este nombre de usuario ya esta en uso";
             }
-            // En esta seccion utilizo la  variable FILES para validar que la imagen que caegó el usuario haya llegado de forma correcta y tenga la extension correspondiente.
-    // if ($_FILES != null){
-    //   if ($_FILES["avatar"]["error"]!=0){
-    //     $errores["avatar"] = "No recibi la imagen";
-    //   }
-    //   $nombimg = $_FILES["avatar"]["name"];
-    //   $ext = pathinfo($nombimg, PATHINFO_EXTENSION);
-    //   if ($ext != "jpg" && $ext != "jpeg" && $ext != "png") {
-    //     $errores["avatar"] = "La extension del archivo es incorrecto";
-    //   }
-    // }
+        
         }
         return $errores;
     }

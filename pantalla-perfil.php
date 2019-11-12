@@ -1,36 +1,27 @@
 <?php
-
 require_once("Clases/autoload.php");
-
 if(is_null(Autenticador::verificarSesion($pdo))){
     header("Location:pantalla_inicio.php");
 };
-
-
 ?>
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="es" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/estilos.css">
+    <meta charset="utf-8">
+    <title>Perfil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="css/fontello.css">
-    <link rel="stylesheet" href="css/pantalla-perfil.css">
-<script type="text/javascript" src="js/pantalla-perfil.js">
-
-</script>
+<link rel="stylesheet" href="css/pantalla-perfil.css">
+<script type="text/javascript" src="js/pantalla-perfil.js"></script>
   </head>
   <body>
     <div class="contenedor">
-      <?php include_once("header-remodelacion.php") ?>
+      <?php    include_once("header-remodelacion.php")?>
       <div class="top-10vh"></div>
       <div class="header">
         <input type="checkbox" id=btn-menu name="" value="">
         <label for="btn-menu" class="icon-menu"></label>
-
       <nav class="navegacion">
 
 
@@ -41,7 +32,7 @@ if(is_null(Autenticador::verificarSesion($pdo))){
     <div class="div-agregar-img oculto">
       <form class="" method="post" id=form-img enctype="multipart/form-data">
         <label for="inputimg"><img class="icon-foto"></label>
-        <input name="foto" id="inputimg" type="file" style='display: none'/>
+        <input name="foto" id="inputimg" type="file" style=""
     </form>
   </div>
 
@@ -49,10 +40,10 @@ if(is_null(Autenticador::verificarSesion($pdo))){
 
   <li class="datos-usuario">
     <ul class="columna">
-      <li class="nombreUser"><span><?=  $_SESSION["nombreUser"] ?></span></li>
+      <li class="nombreUser"><span><?php     $_SESSION["nombreUser"] ?></span></li>
       <ul class="otrosDatos">
-        <li><span>Level: <?= $_SESSION["level"]?></span></li>
-        <li><span>Exp: <?= $_SESSION["exp"]?>/9999</span></li>
+        <li><span>Level: <?php    $_SESSION["level"]?></span></li>
+        <li><span>Exp: <?php    $_SESSION["exp"]?>/9999</span></li>
 
       </ul>
 
@@ -90,48 +81,37 @@ if(is_null(Autenticador::verificarSesion($pdo))){
     <h4>Categorias</h4>
     <div class="contenedor-categorias">
       <!-- Aca Van las Categorias. Se van a generar automaticamente dependendiendo si hay las preguntas suficientes -->
-      <a href="#" class="categoria"style="background-color: lightblue"><span>Categoria 1</span></a>
-      <a href="#" class="categoria"style="background-color: red"><span>Categoria 2</span></a>
-      <a href="#" class="categoria"style="background-color: green"><span>Categoria 3</span></a>
-      <a href="#" class="categoria"style="background-color: yellow"><span>Categoria 1</span></a>
-      <a href="#" class="categoria"style="background-color: orange"><span>Categoria 2</span></a>
-      <a href="#" class="categoria"style="background-color: blue"><span>Categoria 3</span></a>
+      <a id=1 href="#" class="categoria"style="background-color: #EB3912"><span>General</span></a>
+
+      <?php    $categorias=BaseMYSQL::crear_categorias($pdo);
+      foreach($categorias as $array => $categoria):?>
+      <a id = <?php $categoria["id"]?> href="#" class="categoria" style="background-color:<?php echo $categoria['color']; ?>"><span><?php echo $categoria['categoria']; ?></span></a>
+
+      <?php endforeach;?>
+
     </div>
   </article>
   <article class="article-partidas">
     <h4>Partidas</h4>
     <div class="contenedor-partidas">
       <!-- Aca se van a generar las partidas automaticamente, teniendo un alto maximo con un overflow-y:scroll -->
-<a href="#" class="juego" style="background-color: lightblue">
-  <span class="estado-partida">En curso</span>
-  <span class="fecha-juego">11/11/1999</span>
-  <span class="puntos-juego">Pts: 99999</span>
-  <div class="vidas">
-    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
-    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
-    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
-  </div>
-</a>
-<a href="#" class="juego" style="background-color: green">
-  <span class="estado-partida">En curso</span>
-  <span class="fecha-juego">11/11/1999</span>
-  <span class="puntos-juego">Pts: 99999</span>
-  <div class="vidas">
-    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
-    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
-    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
-  </div>
-</a>
-<a href="#" class="juego" style="background-color: red">
-  <span class="estado-partida">En curso</span>
-  <span class="fecha-juego">11/11/1999</span>
-  <span class="puntos-juego">Pts: 99999</span>
-  <div class="vidas">
-    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
-    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
-    <img src="imagenes/corazon.png" alt="" class="size-icon icon-vida">
-  </div>
-</a>
+      <?php    $partidas= BaseMYSQL::cargar_partidas($_SESSION["id"],$pdo);
+
+        foreach ($partidas as $key => $partida):?>
+
+        <a id=<?php    $partida["id"] ?> href="pantalla-juego.php" class="juego" style="background-color: <?php   echo $partida['color'] ?>">
+          <span class="estado-partida" href="pantalla-juego.php"><?php  if($partida["vidas"]<0){echo "Finalizado";}else{echo "En Curso";} ?></span>
+          <span class="fecha-juego"><?php  echo "nada"?></span>
+          <span class="puntos-juego"><?php   echo $partida['puntos'];?> Pts</span>
+          <div class="vidas">
+            <img src=<?php   if($partida['vidas']<1){echo "imagenes/corazon-gris.png";}else{echo "imagenes/corazon.png";} ?> alt="" class="size-icon icon-vida">
+            <img src=<?php    if($partida['vidas']<2){echo "imagenes/corazon-gris.png";}else{echo "imagenes/corazon.png";} ?> alt="" class="size-icon icon-vida">
+            <img src=<?php    if($partida['vidas']<3){echo "imagenes/corazon-gris.png";}else{echo "imagenes/corazon.png";} ?> alt="" class="size-icon icon-vida">
+          </div>
+        </a>
+
+      <?php    endforeach;?>
+
     </div>
   </article>
 </section>
@@ -198,7 +178,7 @@ if(is_null(Autenticador::verificarSesion($pdo))){
 </table>
 </section>
 </div>
-        <?php include_once("footer-remodelacion.php") ?>
+        <?php    include_once("footer-remodelacion.php") ?>
       </div>
 
 

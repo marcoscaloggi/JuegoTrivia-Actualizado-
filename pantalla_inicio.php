@@ -1,8 +1,8 @@
 <?php
-require_once("funciones.php");
-require_once("Base_de_Datos/insertar_datos.php");
-require_once("Clases/autoload.php");
 
+require_once "funciones.php";
+require_once "Base_de_Datos/insertar_datos.php";
+require_once "Clases/autoload.php";
 llenar_BD($pdo);
 
 $misCookies = Autenticador::verificarCookies();
@@ -18,7 +18,7 @@ if ($_POST==false) {
 }
 if(isset($_COOKIE['btn-registro'])==false){
     setcookie('btn-registro','inicio',time()+(60*60*24),"/");
-    // echo "Estoy creando la cookie";
+
 }
 
 
@@ -31,16 +31,16 @@ if ($_POST) {
     $errores = $validador -> validarLogin($_POST,$pdo);
     if (count($errores) == 0) {
 
-      // $usuario = buscarPorUser($_POST["nombreUser"]);
+
       $usuario = BaseMYSQL::buscarPorUser($_POST["nombreUser"],$pdo,'Usuarios');
 
-      // inicioSesion($usuario, $_POST);
+
       Autenticador::seteoUsuario($usuario,$_POST);
 
       header("Location:pantalla-perfil.php");
 
     }else{
-      echo "hay errores";
+
     }
     }
 
@@ -49,7 +49,6 @@ if ($_POST) {
 
       if (count($errores) == 0) {
 
-        // $usuario = buscarPorEmail($_POST["email"]);
 
             $avatar = "imagen-usuario.png";
             $usuario = ArmarUsuario::armarUser($_POST, $avatar);
@@ -64,11 +63,14 @@ if ($_POST) {
 Autenticador::verificarSesion($pdo);
 
  ?>
+
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="es" dir="ltr">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta charset="utf-8">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/0f33fea696.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
@@ -77,11 +79,12 @@ Autenticador::verificarSesion($pdo);
     <link rel="stylesheet" href="css/pantalla-inicio.css">
 
     <title>Juego trivia</title>
+
   </head>
   <body>
     <div class="container-fluid">
 
-      <?php include_once("header-remodelacion.php") ?>
+      <?php include_once "header-remodelacion.php"; ?>
       <div class="top-10vh"></div>
       <div class="contenedor-pantalla">
 
@@ -214,27 +217,12 @@ Autenticador::verificarSesion($pdo);
 
       <?php include_once("footer-remodelacion.php") ?>
     </div>
-
-
+    <script src = "https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"> </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-<script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<!-- <script type="text/javascript"src="js/js-cookie-latest/src/js.cookie.mjs"></script> -->
-<script src = "https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"> </script>
-
-
-<div id="like_button_container"></div>
-
-<script src = " https://unpkg.com/react@16/umd/react.development.js "  crossorigin></script>
-<script src = "https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   </body>
+
 </html>

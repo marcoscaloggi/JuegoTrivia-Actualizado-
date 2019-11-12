@@ -225,7 +225,7 @@ text-align: center;
         border-bottom-right-radius: 17px;
 
         font-size: 2em;
-            text-shadow: 2px 2px black;
+            text-shadow: 1px 1px black;
 
 }
 .categoria{
@@ -233,15 +233,21 @@ text-align: center;
 border-radius: 25px;
   display:inline-flex;
   width: 30%;
-  background-color: brown;
+
   margin: 5px 0;
   height: 13vh;
   align-items: center;
   justify-content: center;
 }
+
+.categoria>*{
+  color: white;
+  cursor: pointer;
+}
+
 .categoria:hover{
   text-decoration: none;
-  color: white;
+  color: yellow;
 }
 
 .article-partidas{
@@ -253,11 +259,12 @@ border-radius: 25px;
 .contenedor-partidas{
   background-color: #8a2be2cf;
   min-height: 20px;
-  overflow: hidden;
+  overflow-y: scroll;
   border-bottom-left-radius: 17px;
       border-bottom-right-radius: 17px;
       font-size: 2em;
     text-shadow: 2px 2px black;
+    max-height: 13em;
 
 
 }
@@ -267,15 +274,19 @@ border-radius: 25px;
     align-items: center;
     justify-content: center;
 }
-.juego{
+a.juego {
   color: white;
   display: flex;
   width: 90%;
   margin: 10px auto;
   height: 6vh;
   font-size: 0.8em;
-
+cursor: pointer;
 }
+a.juego>*{
+  color: white;
+}
+
 .juego:hover{
   text-decoration: none;
   color: white;

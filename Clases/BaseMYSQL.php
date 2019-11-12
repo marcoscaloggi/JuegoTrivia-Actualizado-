@@ -1,4 +1,4 @@
-''<?php
+<?php
 
 class BaseMYSQL extends BaseDatos{
     static public function conexion($host,$db_nombre,$usuario,$password,$puerto,$charset){
@@ -87,13 +87,54 @@ $sql= "UPDATE usuarios set foto_perfil = :ruta where nombre_usuario = :usuario";
               where partidas.categoria_id = $id_cat
               group by Usuario
               order by Puntos Desc
-              limit 10;"
+              limit 10";
 
               $query = $pdo->prepare($sql);
-              $ranking = $query->execute();
+              $query->execute();
+              $ranking = $query->fetch(PDO::FETCH_ASSOC);
               return $ranking;
 
     }
+    static public function cargar_partidas($id,$pdo){
+
+      $sql="SELECT partidas.id, partidas.updated_at as fecha, vidas, puntos, categorias.color
+            from partidas
+            inner join categorias on categorias.id = partidas.categoria_id
+            inner join partida_usuario on partidas.id = partida_usuario.partida_id
+            inner join usuarios on usuarios.id = partida_usuario.usuario_id
+            where usuarios.id = $id
+            order by fecha";
+
+            $query = $pdo->prepare($sql);
+            $query->execute();
+            $partidas = $query->fetchAll(PDO::FETCH_ASSOC);
+            // BaseMYSQL::ver($categorias);
+            return $partidas;
+
+    }
+    static public function crear_categorias($pdo){
+      $sql = "SELECT categoria_id as id, categorias.nombre as categoria,categorias.color as color
+              from preguntas
+              inner join categorias on categoria_id = categorias.id
+              group by categoria_id
+              having count(*)>20
+              order by categoria_id";
+
+              $query = $pdo->prepare($sql);
+             $query->execute();
+               $categorias = $query->fetchAll(PDO::FETCH_ASSOC);
+          // BaseMYSQL::ver($categorias);
+              return $categorias;
+
+    }
+
+    static public function ver($var){
+      echo "<pre>";
+      var_dump($var);
+      echo "</pre>";
+      // exit;
+    }
+
     public function leer(){
         //A futuro trabajaremos en esto
     }
@@ -107,4 +148,3 @@ $sql= "UPDATE usuarios set foto_perfil = :ruta where nombre_usuario = :usuario";
 
     }
 }
- ?>

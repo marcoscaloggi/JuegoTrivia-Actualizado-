@@ -1,6 +1,6 @@
 <?php
 
-require_once('autoload.php');
+require_once 'autoload.php';
 
 class Autenticador{
 
@@ -96,4 +96,3 @@ if(isset($_SESSION["nombreUser"])){
   }
   }//LLAve de fin de funcion verificarSesion
 }//Llave de la clase
- ?>

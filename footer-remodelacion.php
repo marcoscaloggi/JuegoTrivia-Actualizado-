@@ -1,9 +1,5 @@
 <footer>
-  <!-- <div class="logo-footer">
-
-  </div> -->
 <div class="row">
-
     <article class="columna-footer col-3 no-gutters">
       <h6>
         EMPRESA
@@ -32,7 +28,6 @@
         </li>
       </ul>
     </article>
-
     <article class="columna-footer col-3 no-gutters">
       <h6>
         RECURSOS
@@ -71,6 +66,4 @@
       </ul>
     </article>
   </div>
-
-  <!-- <span>Copyright (c) 2018 Copyright Holder All Rights Reserved.</span> -->
 </footer>

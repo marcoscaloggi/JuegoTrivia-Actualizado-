@@ -5,4 +5,3 @@ abstract class BaseDatos{
     abstract public function borrar();
     abstract public function actualizar();
 }
- ?>

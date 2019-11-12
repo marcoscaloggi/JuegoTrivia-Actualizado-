@@ -1,3 +1,9 @@
 @import 'header.css';
 @import 'footer.css';
 @import 'animate.css';
+
+#text{
+  display: none;
+  position: absolute;
+  visibility: hidden;
+}
