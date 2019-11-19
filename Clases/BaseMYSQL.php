@@ -91,10 +91,19 @@ $sql= "UPDATE usuarios set foto_perfil = :ruta where nombre_usuario = :usuario";
 
               $query = $pdo->prepare($sql);
               $query->execute();
-              $ranking = $query->fetch(PDO::FETCH_ASSOC);
+              $ranking = $query->fetchAll(PDO::FETCH_ASSOC);
               return $ranking;
 
     }
+
+    static public function categorias($pdo){
+        $sql="SELECT id,nombre,color from categorias";
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        $categorias = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $categorias;
+    }
+
     static public function cargar_partidas($id,$pdo){
 
       $sql="SELECT partidas.id, partidas.updated_at as fecha, vidas, puntos, categorias.color
@@ -127,6 +136,24 @@ $sql= "UPDATE usuarios set foto_perfil = :ruta where nombre_usuario = :usuario";
               return $categorias;
 
     }
+
+static public function puntajes($id, $pdo){
+
+$sql="SELECT categorias.nombre as categorias, sum(partidas.puntos) as puntos
+from usuarios
+inner join partida_usuario on usuarios.id = partida_usuario.usuario_id
+inner join partidas on partidas.id=partida_usuario.partida_id
+inner join categorias on partidas.categoria_id = categorias.id
+where usuarios.id=$id
+group by categorias.id
+order by categorias.id";
+
+$query = $pdo->prepare($sql);
+$query->execute();
+ $puntajes = $query->fetchAll(PDO::FETCH_ASSOC);
+
+return $puntajes;
+}
 
     static public function ver($var){
       echo "<pre>";

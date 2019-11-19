@@ -94,7 +94,7 @@ if(is_null(Autenticador::verificarSesion($pdo))){
       <?php    $partidas= BaseMYSQL::cargar_partidas($_SESSION["id"],$pdo);
         foreach ($partidas as $key => $partida):?>
 
-        <a id=<?= $partida['id'] ?>   <?php if($partida["vidas"]>-1){echo "href='pantalla-juego.php'";}?>" class="juego" style="background-color: <?php   echo $partida['color'] ?>">
+        <a id=<?= $partida['id'] ?>   <?php if($partida["vidas"]>-1){echo "href='pantalla-juego.php'";}?> class="juego" style="background-color: <?=$partida['color'] ?>">
           <span class="estado-partida" ><?php  if($partida["vidas"]<0){echo "Finalizado";}else{echo "En Curso";} ?></span>
           <span class="fecha-juego"><?php  echo "nada"?></span>
           <span class="puntos-juego"><?php   echo $partida['puntos'];?> Pts</span>
@@ -105,21 +105,54 @@ if(is_null(Autenticador::verificarSesion($pdo))){
           </div>
         </a>
 
-      <?php    endforeach;?>
+      <?php endforeach?>
 
     </div>
   </article>
 </section>
 <section class="section-ranking">
 
-<table class="tabla-ranking">
+<input type="checkbox" id=btn-ranking name="" value="">
+<label for="btn-ranking" class="titulo-mis-puntos"><span>Mis puntuaciones</span> </label>
 
-  <thead>
+<?php
+$puntajes= BaseMYSQL::puntajes($_SESSION["id"],$pdo);
+// var_dump($puntajes);
+?>
+<table class="mis-puntajes">
+  <thead class="tabla-ranking">
     <tr>
-      <th colspan="3" class="titulo-tabla"><a href="#"><img src="imagenes/flecha-izquierda.png"  class="icon-flecha"  alt=""></a> Ranking <a href="#"> <img src="imagenes/flecha-derecha.png" class="icon-flecha"  alt=""> </a> </th>
+
+      <th>Categoria</th>
+      <th>Puntos</th>
+    </tr>
+
+  </thead>
+  <tbody>
+<?php foreach ($puntajes as $key => $categoria):?>
+  <tr>
+    <th><?= $categoria['categorias']?></th>
+    <th> <?= $categoria['puntos']  ?></th>
+  </tr>
+<?php endforeach; ?>
+  </tbody>
+</table>
+<?php
+  // var_dump($categorias_ranking);
+  ?>
+
+
+<table style="margin-top:2%;margin-bottom: 15px;">
+
+  <thead class="tabla-ranking ">
+    <tr>
+      <th colspan="3"class="titulo-tabla">
+        <button type="button" id=flecha_retroceder class=""><img src="imagenes/flecha-izquierda.png" class="icon-flecha"></button> Ranking <button type="button" id=flecha_avanzar><img src="imagenes/flecha-derecha.png" class="icon-flecha"></button>
+      </th>
+
     </tr>
     <tr>
-      <th colspan="3" id=categoria-tabla style="background-color: lightblue">Nombre Categoria</th>
+      <th colspan="3" id=categoria_tabla><span id=nombre_categoria></span> </th>
     </tr>
     <tr>
       <th>/</th>

@@ -4,7 +4,7 @@
             <img src="imagenes/logo-juego.png" alt="" class="heredar_height">
           </a>
           <a href="">
-            <h1>JuegoTrivia.com</h1>
+            <h1 style="margin: auto 0">JuegoTrivia.com</h1>
           </a>
     </div>
     </header>
