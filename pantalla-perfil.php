@@ -142,7 +142,7 @@ $puntajes= BaseMYSQL::puntajes($_SESSION["id"],$pdo);
   ?>
 
 
-<table style="margin-top:2%;margin-bottom: 15px;">
+<table style="margin-top:2%;margin-bottom: 15px;width:100%">
 
   <thead class="tabla-ranking ">
     <tr>
@@ -155,13 +155,13 @@ $puntajes= BaseMYSQL::puntajes($_SESSION["id"],$pdo);
       <th colspan="3" id=categoria_tabla><span id=nombre_categoria></span> </th>
     </tr>
     <tr>
-      <th>/</th>
-      <th>Usuario</th>
-      <th>Puntos</th>
+      <th style="width:13%">/</th>
+      <th style="width:67%">Usuario</th>
+      <th style="width:20%">Puntos</th>
     </tr>
   </thead>
 
-    <tbody>
+    <tbody id=body_tabla_ranking>
 
         <tr>
           <th>1</th><th>caloggi</th><th>999999</th>

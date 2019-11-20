@@ -213,7 +213,7 @@ text-align: center;
 
 }
 .section-partidas{
-  width: 70%;
+  width: 69%;
   /* background-color: yellow; */
   /* display: inline-block */
 }
@@ -336,8 +336,8 @@ a.juego>*{
 }
 
 .section-ranking{
-  width: 30%;
-  padding-right: 2%;
+  width: 31%;
+  padding-right: 0.4%;
   /* background-color: pink; */
   /* display: inline-block; */
 }

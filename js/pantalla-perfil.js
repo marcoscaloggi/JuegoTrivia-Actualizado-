@@ -1,12 +1,15 @@
 var posicion_categ;
 var cant_categ;
 var categorias;
+
 function inicioPag(){
   cargar_categorias();
 
 
   $("#inputimg").change(cambiar);
   $("#flecha_avanzar").click(flecha_avanzar);
+  $("#flecha_retroceder").click(flecha_retroceder);
+
 //   $('#form-img').submit(function(evt) {
 //
 //
@@ -42,11 +45,14 @@ function inicioPag(){
 
 
   function flecha_avanzar(){
+    var color;
+    var nombre;
+
     if(posicion_categ<(cant_categ-1)){
       posicion_categ+=1;
-      var color = categorias[posicion_categ].color;
-      var nombre = categorias[posicion_categ].nombre;
-      asignar_categ(nombre,color);
+      color = categorias[posicion_categ].color;
+      nombre = categorias[posicion_categ].nombre;
+
 
 
     }
@@ -54,29 +60,37 @@ function inicioPag(){
       posicion_categ=0;
       var color = categorias[0].color;
       var nombre = categorias[0].nombre;
-      asignar_categ(nombre,color);
     }
-// var data= posicion_categ;
-    $.ajax({
-  url: 'Ajax/cargar_ranking.php',
-  type: 'POST',
-  data:{id:posicion_categ},
 
-  cache:false,
-
-  success:function(response){
-    console.log(response);
-
-  }
-});
+    asignar_categ(nombre,color);
+    var pos = posicion_categ+1;
+    ajax_ranking(pos);
 
   }
   function flecha_retroceder(){
+      var color;
+      var nombre;
+    if(posicion_categ>0){
+      posicion_categ-=1;
+      color = categorias[posicion_categ].color;
+      nombre = categorias[posicion_categ].nombre;
 
+
+
+    }
+    else{
+      posicion_categ=cant_categ-1;
+      color = categorias[posicion_categ].color;
+      nombre = categorias[posicion_categ].nombre;
+    }
+
+    asignar_categ(nombre,color);
+var pos = posicion_categ+1;
+ajax_ranking(pos);
   }
 
   function asignar_categ(nombre,color){
-
+    console.log(posicion_categ);
     span = document.getElementById("nombre_categoria");
     if(span.firstChild){
       span.removeChild(span.firstChild);
@@ -104,9 +118,41 @@ function inicioPag(){
   cant_categ = array.length;
   categorias=array;
   posicion_categ =0;
+  ajax_ranking((posicion_categ+1));
   }
 });
   }
+
+  function cargar_tabla_ranking(usuarios){
+    var array_user = JSON.parse(usuarios);
+    var tabla = document.getElementById('body_tabla_ranking');
+    var filas = tabla.getElementsByTagName('tr');
+
+
+    for(let key=0;key<array_user.length;key++){
+      var user = array_user[key];
+      var celdas = filas[key].getElementsByTagName('th');
+
+      celdas[1].innerText=user['Usuario'];
+      celdas[2].innerText=user['Puntos'];
+    }
+  }
+function ajax_ranking(pos){
+  $.ajax({
+url: 'Ajax/cargar_ranking.php',
+type: 'POST',
+data:{id:pos},
+
+cache:false,
+
+success:function(response){
+  cargar_tabla_ranking(response);
+
+}
+});
+
+}
+
 }
 
 
