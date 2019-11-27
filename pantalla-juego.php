@@ -1,10 +1,8 @@
 <?php
-// require_once("clases/autoload.php");
-//
-// if(is_null(Autenticador::verificarSesion())){
-//     header("Location:pantalla_inicio.php");
-// };
-
+require_once("Clases/autoload.php");
+if(is_null(Autenticador::verificarSesion($pdo))){
+    header("Location:pantalla_inicio.php");
+};
 ?>
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -12,13 +10,14 @@
 <head>
 
   <meta charset="utf-8">
-  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/pantalla-juego.css">
   <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
   <title></title>
      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
      <script type="text/javascript" src="js/script-pantalla-juego.js"></script>
-     <script type="text/javascript" src="js/index.js"></script>
 
+     <script src="js/Winwheel.js"></script>
+     <script src="js/TweenMax.min.js"></script>
 </head>
 
 <body class="body-pantalla-juego">
